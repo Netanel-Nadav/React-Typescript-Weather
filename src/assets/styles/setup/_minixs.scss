@@ -1,0 +1,17 @@
+@mixin medium-layout {
+    @media screen and (min-width: $breakMedium) {
+        @content;
+    }
+};
+
+@mixin large-layout {
+    @media screen and (min-width: $breakLarge) {
+        @content;
+    }
+};
+
+@mixin wide-layout {
+    @media screen and (min-width: $breakWide) {
+        @content;
+    }
+};

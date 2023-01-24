@@ -1,0 +1,29 @@
+$color-background: rgb(236, 236, 236);
+$color-primary: rgb(0, 173, 181);
+$color-secondary: rgb(34, 40, 49);
+$color-muted: #ccc;
+
+
+$color-background-dark: rgb(10, 8, 31);
+$color-text-dark: rgb(236, 236, 236);
+$color-background-dark-lighten: lighten($color-background-dark, 10%);
+
+
+$soft-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+
+
+// PADDING
+$basePadding: 20px;
+
+// BREAKPOINTS
+$breakSmall: 580px;
+$breakMedium: 780px;
+$breakLarge: 1100px;
+$breakWide: 1500px;
+
+
+// PADDED BREAKPOINTS 
+$paddedBreakSmall: $breakSmall - $basePadding * 2;
+$paddedBreakMedium: $breakMedium - $basePadding * 2;
+$paddedBreakLarge: $breakLarge - $basePadding * 2;
+$paddedBreakWide: $breakWide - $basePadding * 2;

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+    color: $color-secondary;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: $color-background;
+
+    &:has(.dark) {
+        // background-color: $color-background-dark;
+        background-image: url('https://cdn.discordapp.com/attachments/1060543541673201664/1065611052043210762/Selinis_duo_tone_clouds_that_works_well_with_dark_theme_website_762a5a2f-4270-4a50-ab47-4e676b524dda.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+    }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+small {
+    font-size: .750rem;
+    color: $color-muted;
+}
+
+header {
+    height: 80px;
+    border-bottom: 1px solid $color-muted;
+    background-color: #fff;
+    margin-bottom: 3rem;
+}
+
+
+.app.dark {
+    color: $color-text-dark;
+
+    header {
+        background-color: $color-background-dark-lighten;
+    }
+
+    .search {
+        input {
+            background-color: rgba(0,0,0,.9);
+            box-shadow: 0px 10px 15px rgba(0,0,0,0.5);
+            color: #fff;
+        }
+    }
+
+    .favLoc-card {
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .card {
+        background-color: rgba(15, 14, 21, 0.9);
+
+        .card-body {
+            border-bottom: 1px solid black;
+            .color-secondary {
+                color: #ccc;
+            }
+        }
+        .card-actions {
+            button {
+                box-shadow: 0px 10px 15px rgba(0,0,0,1);
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: $basePadding auto $basePadding;
+    
+    @include medium-layout {
+        grid-template-columns: 
+        minmax($basePadding, 1fr)
+        minmax(auto, $paddedBreakMedium)
+        minmax($basePadding, 1fr);
+    }
+    
+    @include large-layout {
+        grid-template-columns: 
+        minmax($basePadding, 1fr)
+        minmax(auto, $paddedBreakLarge)
+        minmax($basePadding, 1fr);
+    }
+  
+    @include wide-layout {
+        grid-template-columns: 
+        minmax($basePadding, 1fr)
+        minmax(auto, $paddedBreakWide)
+        minmax($basePadding, 1fr);
+    }
+
+    > * {
+        grid-column: 2;
+    }
+
+    & > .full {
+        grid-column: 1 / -1;
+    }
+}

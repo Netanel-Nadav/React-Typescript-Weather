@@ -1,0 +1,21 @@
+// SETUP
+@import './setup/variables';
+@import './setup/function';
+@import './setup/minixs';
+
+
+// BASE
+@import './basics/base';
+@import './basics/helpers';
+@import './basics/layout';
+
+
+// PAGES
+@import './pages/home';
+@import './pages/favorites';
+
+
+// COMPONENTS
+@import './components/navigation';
+@import './components/forecast-list';
+@import './components/search';
