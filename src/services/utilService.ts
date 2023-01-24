@@ -19,7 +19,7 @@ const formatDate = (dateSTR: string): string => {
 
 
 const getAPIKey = () => {
-    let API_KEYS = ['pBDDqIasgviQY7MqUAXliLGBfNm152dT', 'zPPGOqFZPB8wBMwXfEKBWhhZWkjs0pYa', 'qW4CYoO3kuni24BlFEAcD8G0zK7FcEPG', 'Se8smdgYWyN0cuvPGjcQkF2nOMwAVx8w']
+    let API_KEYS = [process.env.REACT_APP_API_KEY, process.env.REACT_APP_API_KEY2, process.env.REACT_APP_API_KEY3, process.env.REACT_APP_API_KEY4]
     const randomNum = Math.floor(Math.random() * API_KEYS.length)
     return API_KEYS[randomNum]
 }
