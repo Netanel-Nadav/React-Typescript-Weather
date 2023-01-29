@@ -10,6 +10,7 @@ import { favoriteService } from '../services/favoriteService'
 
 export const Home = () => {
 
+  
   const { data, isLoading, forecastData, error, getDataForSearchLocation } = useAccuWeather()
   const { id } = useParams()
 
@@ -22,7 +23,7 @@ export const Home = () => {
   if (isLoading || !forecastData || !data) return (
     <>
       {error && <h1>{error}</h1>}
-      {/* <SearchInput getDateForSearchLocation={getDateForSearchLocation} /> */}
+      <SearchInput getDataForSearchLocation={getDataForSearchLocation} />
       <h1>Loading...</h1>
     </>
   )
@@ -31,11 +32,12 @@ export const Home = () => {
 
   return (
     <div className="home">
-      <SearchInput id={id} getDataForSearchLocation={getDataForSearchLocation} />
+      {id && <SearchInput id={id} getDataForSearchLocation={getDataForSearchLocation} />}
+      {!id &&<SearchInput getDataForSearchLocation={getDataForSearchLocation} />}
+      
       <h1 className='text-center fs-3'>Weekly weather in {data.LocalizedName}</h1>
       <button onClick={handleLike} className="btn flex align-center justify-center"><AiOutlineHeart /></button>
       <ForecastList DailyForecasts={DailyForecasts} />
-      {id && <h1>{id}</h1>}
     </div>
   )
 }

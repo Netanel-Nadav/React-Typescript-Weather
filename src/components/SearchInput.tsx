@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
+
+
 
 interface IProps {
   getDataForSearchLocation: (searchTerm: string) => void
@@ -10,13 +11,22 @@ interface IProps {
 export const SearchInput: React.FC<IProps> = ({ id, getDataForSearchLocation }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const inputRef = useRef<HTMLInputElement>(null)
-  
+  const entryRef = useRef<boolean>(true)
+
+
 
   useEffect(() => {
-    if (id) {
-      setSearchTerm(id)
-      // getDateForSearchLocation(id)
+
+    if (entryRef.current) {
+      entryRef.current = false
+      return
+    } else {
+      if (id) {
+        setSearchTerm(id)
+        getDataForSearchLocation(id)
+      }
     }
+
   }, [id])
 
 

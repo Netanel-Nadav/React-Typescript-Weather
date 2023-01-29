@@ -10,7 +10,7 @@ import { DataActionTyps } from '../store/reducers/dataSlice'
 import { useDispatch } from 'react-redux'
 
 
-const API_KEY = utilService.getAPIKey(3)
+const API_KEY = utilService.getAPIKey(1)
 
 
 export const useAccuWeather = () => {
