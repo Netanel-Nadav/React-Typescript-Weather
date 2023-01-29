@@ -1,18 +1,26 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { DailyForecast } from '../models/Forecast'
 import { utilService } from '../services/utilService'
 
 import { useGeolocation } from './useGeolocation'
 
 
+import { DataActionTyps } from '../store/reducers/dataSlice'
+import { useDispatch } from 'react-redux'
+
+
+const API_KEY = utilService.getAPIKey(3)
+
+
 export const useAccuWeather = () => {
+    const dispatch = useDispatch()
     const { location } = useGeolocation()
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState("")
     const [data, setData] = useState<null | any>(null)
     const [forecastData, setForecastData] = useState<null | DailyForecast>(null)
-    const [APIKeyNum, setAPIKeyNum] = useState(0)
+
 
 
 
@@ -23,7 +31,6 @@ export const useAccuWeather = () => {
 
 
     const getData = async () => {
-        let API_KEY = utilService.getAPIKey(APIKeyNum)
         const URL = `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${API_KEY}&q=${location?.lat}%2C${location?.lon}&details=false`
         try {
             setIsLoading(true)
@@ -33,13 +40,11 @@ export const useAccuWeather = () => {
             setIsLoading(false)
         } catch (err: any) {
             setError(err)
-            setAPIKeyNum(prevNum => prevNum + 1)
-            getData()
         }
     }
 
-    const getDateForSearchLocation = async (searchTerm: string) => {
-        let API_KEY = utilService.getAPIKey(APIKeyNum)
+    const getDataForSearchLocation = async (searchTerm: string) => {
+        dispatch({ type: DataActionTyps.SET_SEARCH_TERM, action: searchTerm })
         try {
             const { data } = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${API_KEY}&q=${searchTerm}`)
             const searchedLocation = data[0]
@@ -47,24 +52,21 @@ export const useAccuWeather = () => {
             getWeather(searchedLocation.Key)
         } catch (err: any) {
             setError(err.message)
-            setAPIKeyNum(prevNum => prevNum + 1)
         }
     }
 
 
+
     const getWeather = async (key: string) => {
-        let API_KEY = utilService.getAPIKey(APIKeyNum)
         const FORECAST_URL = `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${API_KEY}`
         try {
             const { data } = await axios.get(FORECAST_URL)
             setForecastData(data)
         } catch (err: any) {
             setError(err.message)
-            setAPIKeyNum(prevNum => prevNum + 1)
-            getWeather(key)
         }
     }
 
 
-    return { data, forecastData, isLoading, error, getDateForSearchLocation }
+    return { data, forecastData, isLoading, error, getDataForSearchLocation }
 }

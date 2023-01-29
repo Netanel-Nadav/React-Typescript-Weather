@@ -1,28 +1,29 @@
-import { useState, useRef, useCallback, useEffect} from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 interface IProps {
-  getDateForSearchLocation: (searchTerm: string) => void
+  getDataForSearchLocation: (searchTerm: string) => void
   id?: string
 }
 
 
-export const SearchInput: React.FC<IProps> = ({ getDateForSearchLocation, id }) => {
+export const SearchInput: React.FC<IProps> = ({ id, getDataForSearchLocation }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const inputRef = useRef<HTMLInputElement>(null)
-
+  
 
   useEffect(() => {
     if (id) {
       setSearchTerm(id)
-      getDateForSearchLocation(id)
+      // getDateForSearchLocation(id)
     }
   }, [id])
-  
+
 
 
   const debouncedApiCall = useCallback(debounce(() => {
-    if(typeof inputRef.current?.value !== 'string') return
-    getDateForSearchLocation(inputRef.current?.value)
+    if (typeof inputRef.current?.value !== 'string') return
+    getDataForSearchLocation(inputRef.current?.value)
   }, 1000), [])
 
 
